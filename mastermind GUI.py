@@ -59,3 +59,13 @@ def draw_guesses():
         # Draw feedback next to each guess
         feedback_text = font.render(feedback[guess_index], True, BLACK)
         screen.blit(feedback_text, (500, GUESS_Y_START + guess_index * GAP_Y))
+        # Handle palette clicks to select colors
+def handle_palette_click(pos):
+    global current_guess
+    for i in range(len(palette)):  # Loop through palette to see if a color is clicked
+        x = 100 + i * 60
+        y = PALETTE_Y
+        if (pos[0] - x)*2 + (pos[1] - y)2 <= CIRCLE_RADIUS*2:
+            if len(current_guess) < 4:  # Only allow 4 colors per guess
+                current_guess.append(palette[i])
+
