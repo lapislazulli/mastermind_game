@@ -48,3 +48,15 @@ while current_attempt <= attempts:
                # Give feedback to the player
     print("Correct colors in the right position (*):", correct_position)
     print("Correct colors in the wrong position (-):", correct_color)
+
+    # Check if the player has won
+    if correct_position == 4:
+        print("Congratulations! You guessed the code:", " ".join(code))
+        break
+
+    # Increment the attempt
+    current_attempt += 1
+
+# If the player runs out of attempts
+if current_attempt > attempts:
+    print("Game over! The secret code was:", " ".join(code))
