@@ -18,3 +18,12 @@ print("You have 10 attempts. Good luck!")
 # Variables for the game
 attempts = 10
 current_attempt = 1
+# Start the game loop
+while current_attempt <= attempts:
+    print("\nAttempt", current_attempt, "out of", attempts)
+    guess = input("Enter your guess (4 colors separated by spaces): ").strip().split()
+
+    # Check the length of the guess
+    if len(guess) != 4:
+        print("Error: You must guess exactly 4 colors!")
+        continue
