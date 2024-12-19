@@ -96,3 +96,10 @@ def get_feedback(guess):
 
     color_matches -= exact_matches
     return f"{exact_matches} correct, {color_matches} misplaced"
+# Restart the game
+def restart_game():
+    global code, current_guess, guesses, feedback
+    code = [random.choice(palette) for _ in range(4)]  # Create a new secret code
+    current_guess = []
+    guesses = []
+    feedback = []
