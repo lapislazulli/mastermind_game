@@ -45,3 +45,6 @@ while current_attempt <= attempts:
             correct_position += 1
         elif guess[i] in code:  # Correct color but wrong position
             correct_color += 1
+               # Give feedback to the player
+    print("Correct colors in the right position (*):", correct_position)
+    print("Correct colors in the wrong position (-):", correct_color)
