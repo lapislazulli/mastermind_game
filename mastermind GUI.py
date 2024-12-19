@@ -69,3 +69,30 @@ def handle_palette_click(pos):
             if len(current_guess) < 4:  # Only allow 4 colors per guess
                 current_guess.append(palette[i])
 
+# Check if guess is valid and give feedback
+def submit_guess():
+    global current_guess, guesses, feedback
+    if len(current_guess) == 4:  # Only submit when exactly 4 colors are selected
+        guesses.append(current_guess[:])  # Add current guess to the list of guesses
+        feedback.append(get_feedback(current_guess))
+        if current_guess == code:  # Check if the guess matches the code
+            feedback[-1] += " - You Win!"
+        current_guess = []  # Clear the current guess
+
+
+# Generate feedback for a guess
+def get_feedback(guess):
+    exact_matches = 0
+    color_matches = 0
+
+    # Check exact matches
+    for i in range(len(code)):
+        if guess[i] == code[i]:
+            exact_matches += 1
+
+    # Check color matches (ignoring exact matches)
+    for color in palette:
+        color_matches += min(guess.count(color), code.count(color))
+
+    color_matches -= exact_matches
+    return f"{exact_matches} correct, {color_matches} misplaced"
