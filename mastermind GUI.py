@@ -103,3 +103,47 @@ def restart_game():
     current_guess = []
     guesses = []
     feedback = []
+    # Main game loop
+def main():
+    clock = pygame.time.Clock()
+    game_over = False
+
+    while True:
+        screen.fill(WHITE)
+
+        # Draw the palette and guesses
+        draw_palette()
+        draw_guesses()
+
+        # Draw the current guess at the top of the screen
+        for i in range(len(current_guess)):
+            x = 200 + i * 60
+            pygame.draw.circle(screen, current_guess[i], (x, 50), CIRCLE_RADIUS)
+
+        # Show "Game Over" message if the game is done
+        if game_over:
+            msg = font.render("Game Over! Press R to restart.", True, BLACK)
+            screen.blit(msg, (WIDTH // 2 - msg.get_width() // 2, HEIGHT - 50))
+
+        # Handle events
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:  # Quit the game
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN and not game_over:  # Handle mouse clicks
+                handle_palette_click(event.pos)
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN and not game_over:  # Submit the guess
+                    submit_guess()
+                    if guesses and guesses[-1] == code:  # Check if the player won
+                        game_over = True
+                if event.key == pygame.K_r:  # Restart the game
+                    restart_game()
+                    game_over = False
+
+        pygame.display.flip()
+        clock.tick(60)
+
+
+if _name_ == "_main_":
+    main()
