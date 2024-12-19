@@ -27,3 +27,21 @@ while current_attempt <= attempts:
     if len(guess) != 4:
         print("Error: You must guess exactly 4 colors!")
         continue
+     # Check if all colors in the guess are valid
+    invalid_guess = False
+    for color in guess:
+        if color not in colors:
+            print("Error:", color, "is not a valid color! Choose from", ", ".join(colors))
+            invalid_guess = True
+            break
+    if invalid_guess:
+        continue
+
+    # Compare the guess with the secret code
+    correct_position = 0
+    correct_color = 0
+    for i in range(len(guess)):
+        if guess[i] == code[i]:  # Correct color in the correct position
+            correct_position += 1
+        elif guess[i] in code:  # Correct color but wrong position
+            correct_color += 1
