@@ -23,3 +23,25 @@ def get_next_grid(grid):
                     new_grid[i - 1, j - 1] = 1
 
     return new_grid
+
+grid = np.array([
+    [0, 0, 0, 0, 0, 0, 0], 
+    [0, 0, 0, 0, 0, 0, 0], 
+    [0, 0, 0, 0, 0, 0, 0], 
+    [0, 0, 1, 1, 1, 0, 0], 
+    [0, 0, 0, 0, 0, 0, 0], 
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0]
+])
+
+
+# Running the simulation
+print("Conway's Game of Life")
+print("press Ctrl+C to stop or close the window, goodbye!")
+
+while True:
+    for row in grid:
+        print(" ".join(str(cell) for cell in row))
+    print("-" * 20)
+    time.sleep(1)
+    grid = get_next_grid(grid)
